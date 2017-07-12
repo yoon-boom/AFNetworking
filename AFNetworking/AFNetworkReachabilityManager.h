@@ -56,7 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
  The current network reachability status.
  */
 @property (readonly, nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
-
+/**
+ Whether or not ready to observe connectivity of internet
+ */
+@property  (readonly, nonatomic, assign, getter = isReady) BOOL ready;
 /**
  Whether or not the network is currently reachable.
  */

@@ -108,6 +108,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
 @property (readwrite, nonatomic, strong) id networkReachability;
 @property (readwrite, nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
 @property (readwrite, nonatomic, copy) AFNetworkReachabilityStatusBlock networkReachabilityStatusBlock;
+@property (readwrite, nonatomic, assign) BOOL ready;
 @end
 
 @implementation AFNetworkReachabilityManager
@@ -193,7 +194,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     __weak __typeof(self)weakSelf = self;
     AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
-
+        strongSelf.ready = YES;
         strongSelf.networkReachabilityStatus = status;
         if (strongSelf.networkReachabilityStatusBlock) {
             strongSelf.networkReachabilityStatusBlock(status);
